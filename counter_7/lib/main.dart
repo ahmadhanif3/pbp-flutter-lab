@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: "Program Counter"),
     );
   }
 }
@@ -82,12 +82,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Align(
+             Align(
                 alignment: Alignment.bottomLeft,
-                child: FloatingActionButton(
-                  onPressed: _decrementCounter,
-                  tooltip: 'Decrement',
-                  child: const Icon(Icons.remove),
+                child: Opacity(
+                  opacity: (_counter > 0)? 1:0,
+                  child:  FloatingActionButton(
+                      onPressed: _decrementCounter,
+                      tooltip: 'Decrement',
+                      child: const Icon(Icons.remove),
+                    )
                 )
             ),
             Align(
@@ -101,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       )
-
     );
   }
 }
