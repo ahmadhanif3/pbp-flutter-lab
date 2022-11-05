@@ -7,9 +7,9 @@ Stateless widget merupakan
 - Stateful Widget<br>
 Stateful widget merupakan
 - Stateless Widget vs Stateful Widget<br>
-| Stateless | Stateful |
-| --------- | -------- |
+| Stateless | Stateful |<br>
+| --------- | -------- |<br>
 | Static Widgets | Dynamic Widgets |
-| Tidak bergantung pada perubahan data atau perilaku | Bisa berubah pada saat runtime berdasarkan perubahan data atau aksi dari user|
-| Tidak memiliki state, hanya akan di-render sekali dan hanya akan di-update jika terdapat perubahan data eksternal | Memiliki internal state, dapat dilakukan render ulang jika input data berubah atau state dari widget berubah |
-| Contoh: Text, Icon, RaisedButton | Contoh: Checkbox, Radio Button, Slider |
+| Tidak bergantung pada perubahan data atau perilaku | Bisa berubah pada saat runtime berdasarkan perubahan data atau aksi dari user|<br>
+| Tidak memiliki state, hanya akan di-render sekali dan hanya akan di-update jika terdapat perubahan data eksternal | Memiliki internal state, dapat dilakukan render ulang jika input data berubah atau state dari widget berubah |<br>
+| Contoh: Text, Icon, RaisedButton | Contoh: Checkbox, Radio Button, Slider |<br>
