@@ -31,7 +31,7 @@ Text terdapat pada beberapa lokasi seperti counter itu sendiri, teks genap atau 
 - Button<br>
 Terdapat widget button pada aplikasi ini, khususnya tipe Floating Button. Pada proyek ini terdapat 2 button yang masing-masing memiliki fungsi increment dan decrement counter.
 
-Terdapat juga beberapa widget lainnya seperti Center, Padding, dan Allign.
+Terdapat juga beberapa widget lainnya seperti Center, Padding, Opacity dan Align.
  
 ### Apa fungsi dari ```setState()```? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut. 
 Pemanggilan ```setState()``` memberi informasi kepada framework bahwa internal state dari suatu objek di dalam fungsi tersebut berubah, dan perubahan tersebut berdampak kepada tampilan. Dikarenakan tampilan akan berubah, ```setState()``` mengakibatkan framework untuk melakukan build untuk state dari objek tersebut.<br>
@@ -109,8 +109,10 @@ return Scaffold(
                 Align(
                     ...
                     child: Opacity(
-                        opacity: (_counter > 0)? 1:0,
+                        opacity: (_counter > 0)? 1:0.2,
                         child: FloatingActionButton(
+                        ...
+                        tooltip: (_counter > 0)? 'Decrement':'',
                         ...
                         ) // FloatingActionButton
                     ) // Opacity

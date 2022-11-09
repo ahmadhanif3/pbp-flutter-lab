@@ -84,11 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
              Align(
                 alignment: Alignment.bottomLeft,
-                child: Opacity(
-                  opacity: (_counter > 0)? 1:0,
+                child: Opacity( // Bisa dengan Visibility()
+                  opacity: (_counter > 0)? 1:0.2,
                   child:  FloatingActionButton(
                       onPressed: _decrementCounter,
-                      tooltip: 'Decrement',
+                      tooltip: (_counter > 0)? 'Decrement':'',
                       child: const Icon(Icons.remove),
                     )
                 )
