@@ -1,6 +1,7 @@
-# counter_7
-A simple counter project
+# counter_7 & Budget
+A simple counter and budget tracker project
 
+## Assignment 7
 ### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya.
 **Stateless Widget**<br>
 Stateless widget merupakan sebuah widget yang state-nya tidak dapat diubah setelah selesai dibangun/build. Secara sederhana, ini berarti stateless widget tidak dapat berubah atau tidak akan pernah berubah. Widget ini bersifat immutable, sehingga tampilan dan properti dari widget tidak akan berubah selama runtime.<br>
@@ -123,3 +124,107 @@ return Scaffold(
     ), // Padding
 ); // Scaffold
 ```
+
+## Assignment 8
+### Jelaskan perbedaan ```Navigator.push``` dan ```Navigator.pushReplacement```.
+Seperti pada stack, ```Navigator.push``` melakukan push routing yang ingin dituju. Maka jumlah routing di dalam stack akan bertambah. Sedangkan ```Navigator.pushReplacement``` akan melakukan push terhadap route yang ingin dituju, serta membuang atau melakukan pop terhadap route sebelumnya setelah route yang baru selesai dilakukan build.
+
+### Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+Terdapat widgets yang telah dijelaskan pada [Assignment 7](#assignment-7). Lalu terdapat beberapa widget tambahan seperti:
+- Drawer<br>
+Widget ini dipergunakan untuk menyediakan drawer atau hamburger menu untuk tombol menuju routing page yang lain.
+- Navigator<br>
+Bertindak untuk menuju ke routing yuang lain. Bisa menggunakan ```Navigator.push``` dan ```Navigator.pushReplacement```.
+- ListTile<br>
+Semacam container yang memiliki tinggi yang fixed yang dapat berisikan text. Digunakan sebagai tombol terhadap page lain.
+- Form<br>
+Suatu container untuk mewadahi bermacam widget form. Digunakan pada ```form.dart```
+- TextFormField<br>
+Merupakan suatu field untuk menerima input berupa teks. Pada tugas kali ini dimanfaatkan untuk menerima input judul dan nominal budget.
+- DropdownButtonField<br>
+Merupakan suatu field yang menyediakan dropdown agar user dapat memilih opsi. Digunakan untuk menyediakan pilihan jenis budget.
+- TextButton<br>
+Kasarnya button yang dapat ditekan dan memiliki fungsi setelah ditekan. Digunakan sebagai tombol submit dari form budget.
+- Card<br>
+Sebuah panel yang bisa digunakan untuk menunjukkan informasi atau text. Pada tugas ini digunakan untuk menampilkan data dari budget.<br>
+Masih ada beberapa widget lain yang terdapat pada tugas ini.
+
+### Sebutkan jenis-jenis event yang ada pada Flutter (contoh: onPressed).
+Terdapat berbagai macam jenis event di Flutter. Beberapa contoh adalah onPressed, onChanged, onSaved, onTap, onLongPress, onHover dan masih banyak lagi.
+
+### Jelaskan bagaimana cara kerja ```Navigator``` dalam "mengganti" halaman dari aplikasi Flutter.
+Dalam Flutter, navigasi terdiri dari stck yang berisikan widgets. Navigator menyediakan method untuk melakukan mutasi terhadap stack dengan pop ataupun push. ```Navigator.push``` digunakan untuk menavigasi ke halaman baru, dan ```Navigator.pop``` digunakan untuk kembali ke halaman yang sebelumnya. Push mengambil argumen BuildContext dan PageBuilder, sedangkan pop hanya mengambil argumen BuildContext. Selain itu kita perlu menyediakan rute terhadap halaman yang ingin dituju.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+- [x] Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya.<br>
+Pada property drawer milik Scaffold, tambahkan:
+```
+Drawer(
+  child: Column(
+    children: [
+      ...
+    ],
+  ),
+);
+```
+- [x] Menambahkan tiga tombol navigasi pada drawer/hamburger.<br>
+  - [x] Navigasi pertama untuk ke halaman counter.<br>
+  Pada children Column dari Drawer, tambahkan: 
+```
+ListTile(
+  title: const Text("counter_7"),
+  onTap: () {
+    Navigator.pushReplacement(
+     context,
+     MaterialPageRoute(builder: (context) => const MyHomePage()),
+    );
+  },
+),
+```
+  - [x] Navigasi kedua untuk ke halaman form.<br>
+  Pada children Column dari Drawer, tambahkan:
+```
+ListTile(
+  title: const Text("Tambah Budget"),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MyFormPage()),
+    );
+  },
+),
+```
+  - [x] Navigasi ketiga untuk ke halaman yang menampilkan data budget yang telah di-input melalui form.<br>
+  Pada children Column dadri Drawer, tambahkan:
+```
+ListTile(
+  title: const Text("Data Budget"),
+    onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MyDataPage()),
+    );
+  },
+)
+```
+- [x] Menambahkan halaman form<br>
+  Membuat file baru bernama ```form.dart``` di direktori yang sama. Buat juga ```_formKey``` dan ```Scaffold()``` yang memiliki body ```Form()```. Buat juga list yang menyimpan data-data dari tiap budget.
+  - [x] Menambahkan elemen input dengan tipe data String berupa judul budget.<br>
+  Dengan widget ```TextFormField()``` buat property onSaved, onChanged dan validator untuk menyimpan pada list, mengambil serta validasi input judul budget.
+  - [x] Menambahkan elemen input dengan tipe data int berupa nominal budget.<br>
+  Dengan widget ```TextFormField()``` buat property onSaved, onChanged dan validator untuk menyimpan pada list, mengambil serta validasi input nominal budget. Tambahkan juga keyboardType dan inputFormatters agar user hanya bisa melakukan input berupa digit.
+  - [x] Menambahkan elemen dropdown yang berisi tipe budget dengan pilihan pemasukan dan pengeluaran.<br>
+  Dengan widget ```DropdownButtonFormField()``` buat property items, onChanged, onSaved dan validator. items berisikaan DropdownMenuItem dari pilihan Pemasukan dan Pengeluaran.
+  - [x] Menambahkan button untuk menyimpan budget.<br>
+  Gunakan ```TextButton()``` yang melakukan validasi pada state ```_formKey```. Jika valid, lakukan penyimpanan dan reset form tersebut. Kemudian gunakan ```Dialog()``` untuk melakukan popup informasi budget.
+- [x] Menambahkan halaman data budget<br>
+Membuat file baru bernama ```data.dart``` di direktori yang sama. Body dari ```Scaffold()``` adalah ```ListView.seperated()```.
+  - [x] Menampilkan semua judul, nominal, dan tipe budget yang telah ditambahkan pada form.<br>
+  Di dalam ```ListView.seperated()```, gunakan ```itemBuilder()``` yang mengembalikan ```Card()```. Di dalam card, manfaatkan children untuk menampilkan informasi dari budget.
+- [x] Bonus:<br>
+  - [x] Menambahkan elemen date picker pada halaman form.<br>
+  Gunakan widget ```TextButton()``` yang memiliki property onPressed dengan fungsi ```showDatePicker()```. Kemudian dengan method ```then()```, kita bisa mendapatkan value dari tanggal yang dipilih.
+  - [x] Menampilkan elemen date (format bebas) pada setiap elemen budget yang ada pada halaman data budget.<br>
+  Lakukan ```import 'package:intl/intl.dart';``` terlebih dahulu agar memiliki fungsi untuk melakukan format. Jika belum ada, install terlebih dahulu dependensi-nya. Kemudian di dalam children ```Card()```, tambahkan informasi tanggal dengan menggunakan ```Text(DateFormat.yMMMEd().format(tanggalList[index]))```
+  - [x] Refactor widget Drawer ke sebuah file terpisah.<br>
+ Buat file ```drawer.dart``` pada direktori yang sama. Kemudian setelah melakukan import file-file yang lain, hanya perlu membuat fungsi yang mengembalikan ```Drawer()``` yang telah dibuat sebelumnya. Kemudian dari masing-masing file, lakukan import dan lakukan ```drawer: returnMyDrawer(context),```
