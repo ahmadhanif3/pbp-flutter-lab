@@ -1,5 +1,4 @@
-# counter_7 & Budget
-A simple counter and budget tracker project
+# counter_7 
 
 ## Assignment 7
 ### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya.
@@ -228,3 +227,20 @@ Membuat file baru bernama ```data.dart``` di direktori yang sama. Body dari ```S
   Lakukan ```import 'package:intl/intl.dart';``` terlebih dahulu agar memiliki fungsi untuk melakukan format. Jika belum ada, install terlebih dahulu dependensi-nya. Kemudian di dalam children ```Card()```, tambahkan informasi tanggal dengan menggunakan ```Text(DateFormat.yMMMEd().format(tanggalList[index]))```
   - [x] Refactor widget Drawer ke sebuah file terpisah.<br>
  Buat file ```drawer.dart``` pada direktori yang sama. Kemudian setelah melakukan import file-file yang lain, hanya perlu membuat fungsi yang mengembalikan ```Drawer()``` yang telah dibuat sebelumnya. Kemudian dari masing-masing file, lakukan import dan lakukan ```drawer: returnMyDrawer(context),```
+
+## Assignment 9
+### Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?<br>
+Kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Namun, pembuatan model lebih baik dilakukan agar representasi data yang diterima sudah ada sebelumnya/sudah terepresentasikan. Dengan begitu, pengambilan data yang diterima akan sesuai response. 
+
+### Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.<br>
+Terdapat beberapa widgets baru yang diterapkan pada pembuatan tugas kali ini, seperti:
+- Checkbox: Suatu input box centang, untuk menentukan jika film sudah pernah ditonton.
+- InkWell: Area yang akan menjadi respon setelah ditekan (onTap)
+- CircularProgressIndicator: Sebagai penunjuk/icon/tanda loading saat data JSON sedang di-fetch
+- FutureBuilder: Hasil dari future akan melakukan update terhadap child
+
+### Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.<br>
+Flutter akan melakukan GET ke server. Setelah itu, response akan diberikan dalam bentuk JSON sesuai dengan fungsi dari views Django. Data JSON yang diterima kemudian akan diubah ke dalam bentuk model yang kemudian akan ditampilkan dengan memanfaatkan FutureBuilder.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.<br>
+Pertama kita akan merapihkan dahulu direktori lib. Untuk file halaman akan dimasukan ke dalam direktori ```lib\pages```, file model akan masuk ke directory ```lib\model```, dan file drawer serta fetching data json ke ```lib\utils``` (file ```main.dart``` tidak dipindahkan ke direktori manapun). Kemudian, buat file ```mywatchlist.dart``` yang merupakan file model. Gunakan website [Quicktype](https://app.quicktype.io/) untuk membangun model tersebut. Selanjutnya, buat file ```fetch_watchlist.dart``` yang berfungsi untuk mengambil data JSON. Untuk URL yang akan di-parse, gunakan link pengambilan JSON pada Heroku yang kita miliki (https://katalog-hanif.herokuapp.com/mywatchlist/json/). Lalu bangun file ```mywatchlist_page.dart``` dan ```info_mywatchlist.dart``` yang merupakan halaman dari mywatchlist. Manfaatkan InkWell, FutureBuilder, Button, serta widget-widget lainnya untuk menampilkan informasi dari watchlist. 
